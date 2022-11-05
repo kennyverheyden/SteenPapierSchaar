@@ -33,7 +33,7 @@ public class SteenPapierSchaar {
 				}
 				aantalRondes++;
 
-				System.out.println("\n  RONDE "+ aantalRondes + " | Score speler: "+scoreSpeler+" | Score computer: "+scoreComputer+" | Gelijkspel: "+ scoreGelijkspel+" |\n");
+				System.out.println("\n  Stand na ronde "+ aantalRondes + " | Score SPELER: "+scoreSpeler+" | Score COMPUTER: "+scoreComputer+" | Gelijkspel: "+ scoreGelijkspel+" \n");
 			}
 			while(scoreSpeler< maxScore && scoreComputer<maxScore); //Spelsessie zolang speler of computer onder maxScore blijft
 			// Einde spelsessie van rondes
