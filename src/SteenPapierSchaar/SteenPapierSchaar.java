@@ -10,18 +10,17 @@ public class SteenPapierSchaar {
 	public static void main(String[] args)
 	{
 		String[] keuzes = {"STEEN ","SCHAAR","PAPIER"}; // Benamingen, Let op: spatie achter steen voor uitlijning woordbreedtes 6 characters
-		int scoreSpeler=0, scoreComputer=0, scoreGelijkspel=0, aantalRondes=0, maxScore=5;;
+		int scoreSpeler=0, scoreComputer=0, scoreGelijkspel=0, aantalRondes=0, maxScore=3;
 
 		char spelStand; //Houdt bij per ronde: '0' voor gelijkspel, 'g' voor gewonnen, 'v' voor verloren
 		boolean wilSpelen = true; //Speler blijft een sessie van rondes spelen
 		Welkom();
 
-
 		do //Spelpgrogramma, zolang speler wil spelen. (boolean wilspelen = true)
 		{
 			do //Spelsessie van rondes, zolang scoreSpeler en scoreComputer kleiner is dan maxScore
 			{
-				int spelerKeuze=SpelerInput(keuzes); //Geef keuzes weer en speler input
+				int spelerKeuze=SpelerInput(keuzes, aantalRondes); //Geef keuzes weer en speler input
 				int computerKeuze=ComputerKiest(keuzes); //Computer genereert een keuze
 				spelStand=SpelSpelen(spelerKeuze,computerKeuze,keuzes);//Resultaat van ronde, return char '0' voor gelijkspel, 'g' voor gewonnen, 'v' voor verloren
 
@@ -34,12 +33,7 @@ public class SteenPapierSchaar {
 				}
 				aantalRondes++;
 
-				System.out.println("  Stand ronde "+ aantalRondes + " | Score speler:"+scoreSpeler+" | Score computer:"+scoreComputer+" | Gelijkspel:"+ scoreGelijkspel+" |");
-				if(scoreSpeler<maxScore && scoreComputer<maxScore) // Zet pauzes zolang spelsessie (controle op kleinder dan maxScore)
-				{
-					DrukOpEenToetsOmVerder();
-				}
-
+				System.out.println("\n  RONDE "+ aantalRondes + " | Score speler: "+scoreSpeler+" | Score computer: "+scoreComputer+" | Gelijkspel: "+ scoreGelijkspel+" |\n");
 			}
 			while(scoreSpeler< maxScore && scoreComputer<maxScore); //Spelsessie zolang speler of computer onder maxScore blijft
 			// Einde spelsessie van rondes
@@ -76,12 +70,12 @@ public class SteenPapierSchaar {
 	{
 		System.out.println("\n\n  *************************************************************************");
 		System.out.println("  *****                  Steen, schaar, papier spel                   *****");
-		System.out.println("  *****   Speel tegen de computer en bereik als eerste vijf punten!   *****");
+		System.out.println("  *****   Speel tegen de computer en bereik als eerste drie punten!   *****");
 		System.out.println("  *************************************************************************");
 	}
 
 	// Kkeuze van de speler vragen en uitschrijven
-	public static Integer SpelerInput(String[] Keuzes)
+	public static Integer SpelerInput(String[] Keuzes, int rondes)
 	{
 		//lees de lijst met keuzes om weer te geven
 
@@ -92,7 +86,9 @@ public class SteenPapierSchaar {
 		{	
 			try
 			{
+				if(rondes<1) { // Geef boodschap alleen maar voor de 1ste ronde weer
 				System.out.println("\n  Bevestig je keuze met een getal en druk op [ENTER]\n");
+				}
 				for(int i=0;i<Keuzes.length;i++)
 				{
 					System.out.print("  ["+ (i+1) +"] voor "+Keuzes[i] +" ");
@@ -208,17 +204,6 @@ public class SteenPapierSchaar {
 		printLijn();
 	}
 
-	public static void DrukOpEenToetsOmVerder()
-	{ 
-		System.out.println("\n  Druk op [ENTER] voor de volgende ronde");
-		try
-		{
-			System.in.read();
-			input.nextLine();
-		}  
-		catch(Exception e)
-		{}  
-	}
 	public static void printLijn()
 	{
 		System.out.println("       --------------------------------------------");
