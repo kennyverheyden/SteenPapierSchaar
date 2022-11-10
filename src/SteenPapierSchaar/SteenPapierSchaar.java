@@ -192,7 +192,7 @@ public class SteenPapierSchaar {
 
 	public static void SchrijfGewonnen()
 	{
-		System.out.println("       |                  :-) YES!                |");
+		System.out.println("       |                  :-) YES.. Good job!               |");
 		legeLijn();
 		printLijn();
 	}
